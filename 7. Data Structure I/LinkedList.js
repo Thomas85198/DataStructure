@@ -25,6 +25,26 @@ class LinkedList {
     this.length++;
   }
 
+  pop() {
+    if (!this.head) {
+      return;
+    } else if (this.length === 1) {
+      let temp = this.head;
+      this.head = null;
+      this.length = 0;
+      return temp;
+    } else {
+        let currentNode = this.head;
+        for (let i = 1; i <= this.length - 2; i++) {
+            currentNode = currentNode.next;
+        }
+        let temp = currentNode.next;
+        currentNode.next = null;
+        this.length--;
+        return temp;
+    }
+  }
+
   printAll() {
     if (this.length === 0) {
       console.log("Nothing in this linked list.");
@@ -42,6 +62,9 @@ let myLinkedList = new LinkedList();
 myLinkedList.push("Mike");
 myLinkedList.push("Harry");
 myLinkedList.push("James");
+let poppedValue = myLinkedList.pop();
+console.log(poppedValue);
 myLinkedList.push("Kevin");
+
 myLinkedList.printAll();
 console.log(myLinkedList.length);
